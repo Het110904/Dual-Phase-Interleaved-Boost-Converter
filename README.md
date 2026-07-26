@@ -3,7 +3,7 @@
 <img width="1280" height="720" alt="MASTER PIC 3" src="https://github.com/user-attachments/assets/fd572cf9-7125-4254-b6bf-b0b5ea699a4a" />
 
 > **Project Summary**
-> This repository documents the complete breadboard implementation of a closed-loop, dual-phase interleaved boost converter driven by the SG3525 PWM controller. Built entirely from the ground up, this project details the step-by-step engineering bring-up sequence—from initial controller logic verification to final active load testing with a 24 V BLDC fan. The chosen topology minimizes input/output ripple and distributes thermal stress across two independent power stages.
+**This repository showcases the working hardware prototype of a Closed-Loop Dual-Phase Interleaved Boost Converter. Inspired by the standard Boost Converter topology, this design uses two separate boost converter phases driven by the totem-pole outputs of the SG3525 PWM controller, which are inherently 180° out of phase with each other. The converter achieved an output range of 11.8 V to 28.3 V using the specified feedback network, and delivered a maximum of 18.85 V under load while driving a 24 V, 120 × 120 mm CIRCLE BLDC cooling fan.**
 
 ---
 
@@ -27,9 +27,9 @@ https://github.com/user-attachments/assets/d43f7dc7-85cf-4df3-8651-d1d11d1a3d49
 * **Interleaving:** 180° out of phase
 * **Number of Phases:** 2
 * **Power MOSFETs:** 2 × IRFZ44N
-* **Inductors:** 2 × 220 µH Toroidal
-* **Output Capacitor:** 4700 µF
-* **Load Tested:** 24 V Circle BLDC Fan (120 × 120 mm)
+* **Inductors:** 2 × 220 µH, 2.4 Amps Toroidal
+* **Output Capacitor:** 4700 µF, 50 V
+* **Load Tested:** 24 V Circle BLDC Fan (120 × 120 mm), DC24V 7058RPM RP-360 DC Motor Micro High Speed 360-ST Motor
 
 **Complete Bill of Materials (BOM)**
 * 1 × SG3525A PWM Controller IC
@@ -54,7 +54,7 @@ https://github.com/user-attachments/assets/d43f7dc7-85cf-4df3-8651-d1d11d1a3d49
 
 ## Complete Building Timeline
 
-This converter was systematically brought up subsystem by subsystem to isolate variables, verify control logic, and ensure total stability before scaling to high-power, dual-phase switching.
+This converter was systematically brought up in different stages to isolate variables, verify control logic, and ensure total stability before powering in a haphazard manner.
 
 **Stage 1: SG3525 Controller Bring-up**
 Verified VCC, VREF, and basic oscillator operation.
@@ -66,10 +66,10 @@ Configured RT (15 kΩ) and CT (1 nF) to establish the 95.3 kHz primary switching
 Minimized dead-time by shorting Pin 7 (Discharge) directly to Pin 5 (CT).
 
 **Stage 4: Soft-Start Circuit**
-Implemented a 4.4 µF (2 × 2.2 µF) capacitance on Pin 8 to ground for smooth start-up.
+Implemented a 4.4 µF (2 × 2.2 µF, 50 V) capacitor bank on Pin 8 to ground for smooth start-up.
 
 **Stage 5: Reference Network**
-Created a reference voltage divider from Pin 16 (5 V) to properly bias Pin 2.
+Created a reference voltage divider from Pin 16 (5 V) to properly bias Pin 2 with 2 x 10k ohm resistors in series from Pin 16 to Pin 2 towards GND. 
 
 **Stage 6: Compensation Network**
 Added the series resistor and capacitor network between Pin 1 and Pin 9 for error amplifier stability.
@@ -114,7 +114,7 @@ Connected the 24 V Circle BLDC Fan and proved the converter's stability under an
 **Core Logic Setup:**
 * **Oscillator:** RT = 15 kΩ, CT = 1 nF (102) → 95.3 kHz Total
 * **Dead Time:** Pin 7 shorted to Pin 5
-* **Soft Start:** 4.4 µF capacitor (Pin 8 → Ground)
+* **Soft Start:** 4.4 µF capacitor bank (From Pin 8 → Ground)
 * **Shutdown:** Pin 10 → Ground
 * **Reference:** Pin 16 (5 V) divided down to bias Pin 2 to ≈ 2.5 V
 
@@ -203,7 +203,7 @@ Connected the 24 V Circle BLDC Fan and proved the converter's stability under an
 
 
 
-  * **Secondary Macro Angle:** 
+  * **Other Angles:** 
 
   <img width="1280" height="720" alt="Power Stage Close Up" src="https://github.com/user-attachments/assets/771c5950-00fe-465d-987c-dfc79c386eda" />
 
