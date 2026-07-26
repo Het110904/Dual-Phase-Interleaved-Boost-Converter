@@ -2,8 +2,9 @@
 
 <img width="1280" height="720" alt="MASTER PIC 3" src="https://github.com/user-attachments/assets/fd572cf9-7125-4254-b6bf-b0b5ea699a4a" />
 
-> **Project Summary**
-**This repository showcases the working hardware prototype of a Closed-Loop Dual-Phase Interleaved Boost Converter. Inspired by the standard Boost Converter topology, this design uses two separate boost converter phases driven by the totem-pole outputs of the SG3525 PWM controller, which are inherently 180° out of phase with each other. The converter achieved an output range of 11.8 V to 28.3 V using the specified feedback network, and delivered a maximum of 18.85 V under load while driving a 24 V, 120 × 120 mm CIRCLE BLDC cooling fan.**
+## Project Summary :
+
+This repository showcases the working hardware prototype of a Closed-Loop Dual-Phase Interleaved Boost Converter. Inspired by the standard Boost Converter topology, this design uses two separate boost converter phases driven by the totem-pole outputs of the SG3525 PWM controller, which are inherently 180° out of phase with each other. The converter achieved an output range of 11.8 V to 28.3 V using the specified feedback network, and delivered a maximum of 18.85 V under load while driving a 24 V, 120 × 120 mm CIRCLE BLDC cooling fan.
 
 ---
 
