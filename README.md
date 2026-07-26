@@ -192,7 +192,7 @@ Connected the 24 V Circle BLDC Fan and proved the converter's stability under an
 ## Additional Hardware Angles
 
 <details>
-  <summary>Click here to expand additional routing and layout photographs</summary>
+  <summary>Click here to expand additional layout photographs</summary>
 
   * **Full Breadboard Layout:** 
 
